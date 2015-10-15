@@ -47,19 +47,16 @@ class unattended_upgrades (
   apt::conf { 'unattended-upgrades':
     priority => 50,
     content  => template("${module_name}/unattended-upgrades.erb"),
-    require  => Package['unattended-upgrades'],
   }
 
   apt::conf { 'periodic':
     priority => 10,
     content  => template("${module_name}/periodic.erb"),
-    require  => Package['unattended-upgrades'],
   }
 
   apt::conf { 'auto-upgrades':
     ensure   => absent,
     priority => 20,
-    require  => Package['unattended-upgrades'],
   }
 
 }
